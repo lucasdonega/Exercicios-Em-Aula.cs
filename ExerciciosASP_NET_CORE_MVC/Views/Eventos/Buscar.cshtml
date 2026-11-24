@@ -1,0 +1,63 @@
+@model ExerciciosASP_NET_CORE_MVC.Models.BuscaEventoViewModel
+
+@{
+    ViewData["Title"] = "Buscar Eventos";
+}
+
+<h2>Buscar Eventos</h2>
+
+<form asp-action="Buscar" method="post" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <label asp-for="NomeBusca" class="form-label">Nome</label>
+        <input asp-for="NomeBusca" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="LocalBusca" class="form-label">Local</label>
+        <input asp-for="LocalBusca" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="DataInicial" class="form-label">A partir de</label>
+        <input asp-for="DataInicial" type="date" class="form-control" />
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</form>
+
+@if (Model.BuscaRealizada)
+{
+    if (!Model.Resultados.Any())
+    {
+        <div class="alert alert-info">Nenhum evento encontrado.</div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Vagas</th>
+                    <th>Valor do Ingresso</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var evento in Model.Resultados)
+                {
+                    <tr>
+                        <td>@evento.Nome</td>
+                        <td>@evento.Local</td>
+                        <td>@evento.DataEvento?.ToString("dd/MM/yyyy")</td>
+                        <td>@evento.QuantidadeVagas</td>
+                        <td>@evento.ValorIngresso?.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

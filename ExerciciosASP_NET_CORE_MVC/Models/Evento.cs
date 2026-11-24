@@ -24,13 +24,13 @@ namespace ExerciciosASP_NET_CORE_MVC.Models
 
         [Required(ErrorMessage = "Data obrigatório.")]
         [DataType(DataType.Date, ErrorMessage = "Digite formato de data correto")]
-        public DateTime DataEvento { get; set; }
+        public DateTime? DataEvento { get; set; }
 
         [Range(1, 1000, ErrorMessage = "Limite de quantidade de vagas entre 1 e 1000")]
-        public int QuantidadeVagas { get; set; }
+        public int? QuantidadeVagas { get; set; }
 
-        [Required(ErrorMessage = "Local obrigatório.")]
+        [Required(ErrorMessage = "Valor obrigatório.")]
         [Range(0, double.MaxValue,ErrorMessage = "Digite o valor de ingresso que seja no mínimo ou maior do que zero.")]
-        public decimal ValorIngresso { get; set; }
+        public decimal? ValorIngresso { get; set; }
     }
 }
